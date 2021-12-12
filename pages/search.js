@@ -1,13 +1,13 @@
 import React from 'react';
 import Header from '../src/components/Header/Header';
 
-const index = () => {
+const search = () => {
   return (
     <div>
       <Header />
-      <h1>This is the home page</h1>
+      <h1>Results for ...</h1>
     </div>
   );
 };
 
-export default index;
+export default search;
