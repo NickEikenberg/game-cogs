@@ -17,10 +17,9 @@ const Game = ({ game }) => {
           height={750}
         ></Image>
       </Link>
-      <Link href="/" passHref>
+      <Link href={`/games/${game.id}`} passHref>
         <button>{game.name}</button>
       </Link>
-      {JSON.stringify(game.cover)}
     </div>
   );
 };
