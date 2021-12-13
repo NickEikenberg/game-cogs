@@ -37,16 +37,61 @@ const Game = () => {
   }, [game]);
 
   return (
-    <div className="h-screen bg-gray-50">
+    <div className="h-screen bg-gray-50 flex flex-col">
       <Header />
       {currentGame ? (
-        <div className="m-2 flex w-1/2">
-          {/* {JSON.stringify(currentGame[0])} */}
-          <div>
-            <GameImage game={currentGame[0]} />
+        <div className="flex">
+          <div className="m-2 flex w-2/3" id="game-main">
+            {/* {JSON.stringify(currentGame[0])} */}
+            <div className="m-2">
+              <GameImage game={currentGame[0]} />
+            </div>
+            <div className="w-2/3 text-xs m-2">
+              <p>{currentGame[0].summary}</p>
+            </div>
           </div>
-          <div className="w-1/2 text-xs">
-            <p>{currentGame[0].summary}</p>
+
+          <div className="w-1/3 m-2" id="game-stats">
+            <div className="text-left font-bold border-b-2">
+              <h1>Info for {currentGame[0].name}</h1>
+            </div>
+            <div className="flex space-x-2 m-1 justify-evenly">
+              <button>Add to Collection</button>
+              <button>Add to Wantlist</button>
+            </div>
+
+            <div className="text-left font-bold border-b-2">
+              <h1 className="flex justify-between items-center">
+                Marketplace{' '}
+                <span className="font-thin text-xs">
+                  27 for sale from $28.99
+                </span>
+              </h1>
+            </div>
+            <div className="flex space-x-2 m-1 justify-evenly">
+              <button>Find a Copy</button>
+              <button>Sell Your Copy</button>
+            </div>
+
+            <div className="text-left font-bold border-b-2">
+              <h1 className="flex justify-between items-center">Statistics</h1>
+            </div>
+            <div className="flex flex-col m-1">
+              <p>
+                Have: <span className="text-blue-600">306</span>
+              </p>
+              <p>
+                Want: <span className="text-blue-600">306</span>
+              </p>
+            </div>
+
+            <div className="text-left font-bold border-b-2">
+              <h1 className="flex justify-between items-center">Screenshots</h1>
+            </div>
+
+            <div className="text-left font-bold border-b-2">
+              <h1 className="flex justify-between items-center">Artwork</h1>
+            </div>
           </div>
         </div>
       ) : (
