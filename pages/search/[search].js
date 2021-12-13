@@ -11,11 +11,11 @@ const Search = () => {
 
   useEffect(() => {
     const getGame = () => {
-      let data = `fields name, summary, cover.url;\nwhere name = "${search}";\n`;
+      let data = `search "${search}";\nfields name, cover.*;`;
 
       let config = {
         method: 'post',
-        url: 'https://peaceful-tor-54406.herokuapp.com/https://api.igdb.com/v4/games/',
+        url: 'https://peaceful-tor-54406.herokuapp.com/https://api.igdb.com/v4/games',
         headers: {
           'Client-ID': 'dmlu2pmbd2wc14ke1ooh3on7cmnxr9',
           Authorization: 'Bearer yrehr7e8zvm73i51nafp0w0c8d74ra',
@@ -40,7 +40,16 @@ const Search = () => {
     <div>
       <Header />
       <h1>Results for {search}... </h1>
-      {JSON.stringify(searchData)}
+      <div id="results">
+        {searchData.map((game, index) => {
+          return (
+            <div key={game.name + index}>
+              <p>{game.name}</p>
+            </div>
+          );
+        })}
+      </div>
+      {console.log(searchData)}
 
       <div>{searchData.length > 0 ? null : <EmptySearch />}</div>
     </div>
