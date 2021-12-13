@@ -2,6 +2,7 @@ import React from 'react';
 import Searchbar from './Searchbar';
 import NavLinks from './NavLinks';
 import UserIcon from './UserIcon';
+import UserLinks from './UserLinks';
 import Link from 'next/link';
 
 const Header = () => {
@@ -12,7 +13,8 @@ const Header = () => {
       </Link>
       <Searchbar />
       <NavLinks />
-      <UserIcon />
+      {/* <UserIcon /> */}
+      <UserLinks />
     </div>
   );
 };
