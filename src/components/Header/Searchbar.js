@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const Searchbar = () => {
   let [searchQuery, setSearchQuery] = useState('');
@@ -17,7 +18,7 @@ const Searchbar = () => {
         placeholder="Search"
         onChange={(e) => setSearchQuery(e.target.value)}
       />
-      <Link href="/search" passHref>
+      <Link href={`/search/${searchQuery}`} passHref>
         <button className="absolute right-1 top-0 mt-2 mr-2">
           <FaSearch />
         </button>
