@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Header from '../../src/components/Header/Header';
 import EmptySearch from './EmptySearch';
+import Game from './Game';
 import axios from 'axios';
 
 const Search = () => {
@@ -11,7 +12,7 @@ const Search = () => {
 
   useEffect(() => {
     const getGame = () => {
-      let data = `search "${search}";\nfields name, cover.*;`;
+      let data = `search "${search}";\nfields name, cover.image_id;`;
 
       let config = {
         method: 'post',
@@ -39,17 +40,16 @@ const Search = () => {
   return (
     <div>
       <Header />
-      <h1>Results for {search}... </h1>
-      <div id="results">
-        {searchData.map((game, index) => {
+      <h1>Results for {search} </h1>
+      <div id="results" className="flex flex-wrap">
+        {searchData.map((game) => {
           return (
-            <div key={game.name + index}>
-              <p>{game.name}</p>
+            <div key={game.id} className="w-1/4">
+              <Game game={game} />
             </div>
           );
         })}
       </div>
-      {console.log(searchData)}
 
       <div>{searchData.length > 0 ? null : <EmptySearch />}</div>
     </div>
