@@ -1,17 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Header from '../../src/components/Header/Header';
 import EmptySearch from './EmptySearch';
+import axios from 'axios';
 
 const Search = () => {
   const router = useRouter();
   const { search } = router.query;
   let [searchData, setSearchData] = useState([]);
 
+  useEffect(() => {
+    const getGame = () => {
+      let data = `fields name, summary, cover.url;\nwhere name = "${search}";\n`;
+
+      let config = {
+        method: 'post',
+        url: 'https://peaceful-tor-54406.herokuapp.com/https://api.igdb.com/v4/games/',
+        headers: {
+          'Client-ID': 'dmlu2pmbd2wc14ke1ooh3on7cmnxr9',
+          Authorization: 'Bearer yrehr7e8zvm73i51nafp0w0c8d74ra',
+          'Content-Type': 'text/plain',
+        },
+        data: data,
+      };
+
+      axios(config)
+        .then((response) => {
+          setSearchData(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+
+    getGame();
+  }, [search]);
+
   return (
     <div>
       <Header />
       <h1>Results for {search}... </h1>
+      {JSON.stringify(searchData)}
 
       <div>{searchData.length > 0 ? null : <EmptySearch />}</div>
     </div>
