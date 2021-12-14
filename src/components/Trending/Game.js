@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const Game = ({ img, name }) => {
   return (
-    <div className="flex flex-col w-1/4 px-2">
+    <div className="flex flex-col w-1/4 p-2">
       <div>
         <Image src={img} alt="" width={500} height={750}></Image>
       </div>
