@@ -15,9 +15,10 @@ const Game = ({ game }) => {
           alt="game cover"
           width={500}
           height={750}
+          className="cursor-pointer"
         ></Image>
       </Link>
-      <Link href={`/games/${game.id}`} passHref>
+      <Link href={`/games/${game.id}`} passHref className="cursor-pointer">
         <button>{game.name}</button>
       </Link>
     </div>
