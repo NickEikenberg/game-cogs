@@ -18,20 +18,11 @@ const Register = () => {
   };
 
   const createNewUser = (e) => {
-    e.preventDefault();
     let newUser = {
       email: email,
       password: password,
     };
     handleUserRegister(newUser);
-  };
-
-  const getUsers = (e) => {
-    e.preventDefault();
-    axios
-      .get('http://localhost:8000/api/useraccount')
-      .then((res) => console.log(res))
-      .catch((err) => console.error(err));
   };
 
   const handleEmailChange = (e) => {
@@ -51,7 +42,6 @@ const Register = () => {
           onSubmit={createNewUser}
           className="flex flex-col w-1/3 space-y-2 py-5"
         >
-          <button onClick={getUsers}>click me</button>
           <input
             type="email"
             name="email"
@@ -69,7 +59,7 @@ const Register = () => {
           <input
             type="submit"
             value="Create Account"
-            className="cursor-pointer rounded-md border p-2 bg-lime-600 text-white hover:bg-lime-700 transition"
+            className="cursor-pointer rounded-md border p-2 bg-lime-600 text-white hover:bg-lime-700 transition active:bg-lime-600"
           ></input>
           <h1 className="text-center">
             Already have an account?
