@@ -13,10 +13,9 @@ const Login = () => {
     axios
       .put('http://localhost:8000/api/useraccount/login', user)
       .then((res) => {
-        console.log(res.data);
         if (res.data.email) {
           setCurrentUser(res.data);
-          console.log('Current user: ' + currentUser);
+          console.log('Current user: ' + currentUser.email);
         } else {
           console.log('error', res);
         }
@@ -41,10 +40,22 @@ const Login = () => {
     setPassword(e.target.value);
   };
 
+  const handleLogout = (e) => {
+    e.preventDefault();
+    setCurrentUser({});
+  };
+
   return (
     <div>
       <Header />
-      {currentUser.email && <div>Welcome, {currentUser.email}</div>}
+      {currentUser.email ? (
+        <>
+          <div>Welcome, {currentUser.email}</div>
+          <button onClick={handleLogout}>Logout</button>
+        </>
+      ) : (
+        <div>Logged out</div>
+      )}
       <div className="flex flex-col items-center py-5">
         <h1 className="text-2xl">Log in to your GameCogs account</h1>
         <form
