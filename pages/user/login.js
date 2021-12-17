@@ -1,30 +1,68 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../../src/components/Header/Header';
 import Footer from '../../src/components/Footer/Footer';
 import Link from 'next/link';
+import axios from 'axios';
 
 const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [currentUser, setCurrentUser] = useState({});
+
+  const handleLogin = (user) => {
+    axios
+      .put('http://localhost:8000/api/useraccount/login', user)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.email) {
+          setCurrentUser(res.data);
+          console.log('Current user: ' + currentUser);
+        } else {
+          console.log('error', res);
+        }
+      })
+      .catch((err) => console.error(err));
+  };
+
+  const loginRequest = (e) => {
+    e.preventDefault();
+    let userCredentials = {
+      email: email,
+      password: password,
+    };
+    handleLogin(userCredentials);
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
   return (
     <div>
       <Header />
+      {currentUser.email && <div>Welcome, {currentUser.email}</div>}
       <div className="flex flex-col items-center py-5">
         <h1 className="text-2xl">Log in to your GameCogs account</h1>
         <form
-          // onSubmit={}
+          onSubmit={loginRequest}
           className="flex flex-col w-1/3 space-y-2 py-5"
         >
           <input
             type="email"
             name="email"
             placeholder="Email"
-            // onChange={}
+            onChange={handleEmailChange}
             className="rounded-md border p-2"
           ></input>
           <input
             type="password"
             name="password"
             placeholder="Password"
-            // onChange={}
+            onChange={handlePasswordChange}
             className="rounded-md border p-2"
           ></input>
           <input

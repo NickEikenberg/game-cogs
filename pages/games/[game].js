@@ -95,7 +95,7 @@ const Game = () => {
           </div>
         </div>
       ) : (
-        <h1>{`There doesn't seem to be anything here :(`}</h1>
+        <h1>{`Loading...`}</h1>
       )}
       <Footer />
     </div>
