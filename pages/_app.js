@@ -1,4 +1,5 @@
 import React, { useState, createContext } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import '../src/styles/globals.css';
 
 export const UserContext = createContext();
@@ -13,7 +14,7 @@ function MyApp({ Component, pageProps }) {
     <UserContext.Provider
       value={{ currentUser: currentUser, setCurrentUser: setCurrentUser }}
     >
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </UserContext.Provider>
   );
 }
