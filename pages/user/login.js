@@ -1,21 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Header from '../../src/components/Header/Header';
 import Footer from '../../src/components/Footer/Footer';
 import Link from 'next/link';
 import axios from 'axios';
+import { UserContext } from '../_app';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [currentUser, setCurrentUser] = useState({});
+  // const [currentUser, setCurrentUser] = useState({});
+
+  const { currentUser, setCurrentUser } = useContext(UserContext);
 
   const handleLogin = (user) => {
     axios
       .put('http://localhost:8000/api/useraccount/login', user)
       .then((res) => {
         if (res.data.email) {
+          console.log(res.data);
           setCurrentUser(res.data);
-          console.log('Current user: ' + currentUser.email);
         } else {
           console.log('error', res);
         }
@@ -45,17 +48,22 @@ const Login = () => {
     setCurrentUser({});
   };
 
+  useEffect(() => {
+    console.log(currentUser);
+  }, [currentUser]);
+
   return (
     <div>
+      {console.log(currentUser)}
       <Header />
-      {currentUser.email ? (
+      {/* {currentUser.email ? (
         <>
           <div>Welcome, {currentUser.email}</div>
           <button onClick={handleLogout}>Logout</button>
         </>
       ) : (
         <div>Logged out</div>
-      )}
+      )} */}
       <div className="flex flex-col items-center py-5">
         <h1 className="text-2xl">Log in to your GameCogs account</h1>
         <form
