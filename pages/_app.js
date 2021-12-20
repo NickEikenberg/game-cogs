@@ -8,6 +8,9 @@ function MyApp({ Component, pageProps }) {
   const [currentUser, setCurrentUser] = useState({
     email: '',
     password: '',
+    collection: '',
+    forsale: '',
+    wantlist: '',
   });
 
   return (

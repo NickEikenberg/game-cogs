@@ -40,10 +40,14 @@ const Game = () => {
   }, [game]);
 
   const addToCollection = () => {
-    if (currentUser.collection.includes(currentGame[0].id)) {
-      console.log('game already in collection');
-    } else {
-      currentUser.collection += currentGame[0].id + ',';
+    if (currentUser.collection) {
+      if (currentUser.collection.includes(currentGame[0].id)) {
+        console.log('game already in collection');
+      } else {
+        currentUser.collection += currentGame[0].id + ',';
+
+        console.log('game added');
+      }
     }
   };
 

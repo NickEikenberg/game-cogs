@@ -5,23 +5,34 @@ import { UserContext } from '../_app';
 import Header from '../../src/components/Header/Header';
 import Footer from '../../src/components/Footer/Footer';
 
-import { PasswordError, UserWelcome } from '../../src/components/User/Index';
+import {
+  PasswordError,
+  UserWelcome,
+  EmailError,
+} from '../../src/components/User/Index';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [collection, setCollection] = useState('');
+  const [forsale, setforsale] = useState('');
+  const [wantlist, setwantlist] = useState('');
   const { currentUser, setCurrentUser } = useContext(UserContext);
   const [wrongPassword, setWrongPassword] = useState(false);
+  const [wrongEmail, setWrongEmail] = useState(false);
 
   const handleLogin = (user) => {
+    console.log(user);
     axios
       .put('http://localhost:8000/api/useraccount/login', user)
       .then((res) => {
+        console.log(res.data);
         if (res.data.email) {
           setCurrentUser(res.data);
         } else if (res.data.error == "Passwords don't match!") {
           setWrongPassword(true);
         } else {
+          setWrongEmail(true);
           console.log('error', res);
         }
       })
@@ -33,7 +44,11 @@ const Login = () => {
     let userCredentials = {
       email: email,
       password: password,
+      collection: collection,
+      forsale: forsale,
+      wantlist: wantlist,
     };
+
     handleLogin(userCredentials);
   };
 
@@ -78,12 +93,14 @@ const Login = () => {
               onChange={handlePasswordChange}
               className="rounded-md border p-2"
             ></input>
+
             <input
               type="submit"
               value="Log In"
               className="cursor-pointer rounded-md border p-2 bg-lime-600 text-white hover:bg-lime-700 transition active:bg-lime-600"
             ></input>
             {wrongPassword ? <PasswordError /> : null}
+            {wrongEmail ? <EmailError /> : null}
             <h1 className="text-center">
               New to GameCogs?
               <span className="text-sky-500 pl-1">

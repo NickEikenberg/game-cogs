@@ -18,6 +18,7 @@ const Register = () => {
   };
 
   const createNewUser = (e) => {
+    e.preventDefault();
     let newUser = {
       email: email,
       password: password,
