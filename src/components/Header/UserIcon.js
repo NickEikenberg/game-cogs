@@ -8,7 +8,7 @@ const UserIcon = () => {
   return (
     <div>
       <Link href={`/user/${currentUser.email}`} passHref>
-        <button>UserIcon</button>
+        <button>Profile</button>
       </Link>
     </div>
   );
