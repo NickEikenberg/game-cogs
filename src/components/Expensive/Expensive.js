@@ -32,7 +32,7 @@ const Expensive = () => {
         />
         <Game
           img={'https://images.igdb.com/igdb/image/upload/t_1080p/co2stk.png'}
-          name={'God Hang'}
+          name={'God Hand'}
         />
         <Game
           img={'https://images.igdb.com/igdb/image/upload/t_1080p/co3dks.png'}
