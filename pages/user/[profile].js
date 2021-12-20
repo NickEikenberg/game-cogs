@@ -10,7 +10,7 @@ const Profile = () => {
     <div>
       <Header />
       <h1>Profile page for {currentUser.email}</h1>
-
+      {console.log(currentUser)}
       <Collection />
       <ForSale />
       <Wantlist />

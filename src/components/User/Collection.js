@@ -1,9 +1,11 @@
 import React, { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import { UserContext } from '../../../pages/_app';
+import Game from '../../../pages/search/Game';
 
 const Collection = () => {
   const { currentUser } = useContext(UserContext);
+  const [collectionData, setCollectionData] = useState([]);
   const gameIdArray = currentUser.collection.split(',');
   const collection = gameIdArray.filter((x) => x !== '');
 
@@ -26,7 +28,7 @@ const Collection = () => {
 
       axios(config)
         .then((response) => {
-          console.log(response.data);
+          setCollectionData(response.data);
         })
         .catch((error) => {
           console.log(error);
@@ -40,7 +42,13 @@ const Collection = () => {
       <h1 className="text-3xl">My Collection</h1>
 
       {currentUser.collection.length > 0 ? (
-        collection.map((game) => <h1 key={game}>{game}</h1>)
+        collectionData.map((game) => {
+          return (
+            <div key={game.id} className="w-1/4">
+              <Game game={game} />
+            </div>
+          );
+        })
       ) : (
         <h1>
           Your collection is empty. Search for a game to add it to your
