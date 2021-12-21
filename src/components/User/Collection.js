@@ -6,10 +6,10 @@ import Game from '../../../pages/search/Game';
 const Collection = () => {
   const { currentUser } = useContext(UserContext);
   const [collectionData, setCollectionData] = useState([]);
-  const gameIdArray = currentUser.collection.split(',');
-  const collection = gameIdArray.filter((x) => x !== '');
 
   useEffect(() => {
+    const gameIdArray = currentUser.collection.split(',');
+    const collection = gameIdArray.filter((x) => x !== '');
     const getCollectionGames = () => {
       let data = `fields name, cover.image_id;\nsort rating desc;\nwhere id = (${collection.join(
         ', '
@@ -35,7 +35,7 @@ const Collection = () => {
         });
     };
     getCollectionGames();
-  }, [collection]);
+  }, [currentUser]);
 
   return (
     <div>

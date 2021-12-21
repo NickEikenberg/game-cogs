@@ -6,10 +6,10 @@ import Game from '../../../pages/search/Game';
 const ForSale = () => {
   const { currentUser } = useContext(UserContext);
   const [forSaleData, setForSaleData] = useState([]);
-  const gameIdArray = currentUser.forsale.split(',');
-  const forSale = gameIdArray.filter((x) => x !== '');
 
   useEffect(() => {
+    const gameIdArray = currentUser.forsale.split(',');
+    const forSale = gameIdArray.filter((x) => x !== '');
     const getForSaleGames = () => {
       let data = `fields name, cover.image_id;\nsort rating desc;\nwhere id = (${forSale.join(
         ', '
@@ -35,7 +35,7 @@ const ForSale = () => {
         });
     };
     getForSaleGames();
-  }, [forSale]);
+  }, [currentUser]);
 
   return (
     <div>

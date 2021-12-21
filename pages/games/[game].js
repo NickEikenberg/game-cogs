@@ -39,17 +39,63 @@ const Game = () => {
     getGame();
   }, [game]);
 
-  const addToCollection = () => {
-    console.log('click');
-    if (currentUser.collection) {
-      if (currentUser.collection.includes(currentGame[0].id)) {
-        console.log('game already in collection');
-      } else {
-        currentUser.collection += currentGame[0].id + ',';
-        console.log('game added');
-      }
-    }
+  //TODO TURN THESE THREE FUNCTIONS INTO ONE
+
+  const addGameToList = (listName) => {
+    const axios = require('axios');
+    const FormData = require('form-data');
+    let data = new FormData();
+    data.append('email', currentUser.email);
+    data.append(listName, currentGame[0].id);
+
+    let config = {
+      method: 'patch',
+      url: `http://localhost:8000/api/useraccount/${currentUser.id}/games`,
+
+      data: data,
+    };
+
+    axios(config)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
+
+  // const addToCollection = () => {
+  //   if (currentUser.collection) {
+  //     if (currentUser.collection.includes(currentGame[0].id)) {
+  //       console.log('game already in collection');
+  //     } else {
+  //       currentUser.collection += ',' + currentGame[0].id + ',';
+  //       console.log('game added');
+  //     }
+  //   }
+  // };
+
+  // const addToForSale = () => {
+  //   if (currentUser.forsale) {
+  //     if (currentUser.forsale.includes(currentGame[0].id)) {
+  //       console.log('Game already for sale');
+  //     } else {
+  //       currentUser.forsale += ',' + currentGame[0].id + ',';
+  //       console.log('game now for sale');
+  //     }
+  //   }
+  // };
+
+  // const addToWantlist = () => {
+  //   if (currentUser.wantlist) {
+  //     if (currentUser.wantlist.includes(currentGame[0].id)) {
+  //       console.log('Game already for in your Want List');
+  //     } else {
+  //       currentUser.wantlist += ',' + currentGame[0].id + ',';
+  //       console.log('game now in want list');
+  //     }
+  //   }
+  // };
 
   return (
     <div className="h-screen bg-gray-50 flex flex-col">
@@ -71,8 +117,12 @@ const Game = () => {
               <h1>Info for {currentGame[0].name}</h1>
             </div>
             <div className="flex space-x-2 m-1 justify-evenly">
-              <button onClick={addToCollection}>Add to Collection</button>
-              <button>Add to Wantlist</button>
+              <button onClick={() => addGameToList('collection')}>
+                Add to Collection
+              </button>
+              <button onClick={() => addGameToList('wantlist')}>
+                Add to Wantlist
+              </button>
             </div>
 
             <div className="text-left font-bold border-b-2">
@@ -85,7 +135,9 @@ const Game = () => {
             </div>
             <div className="flex space-x-2 m-1 justify-evenly">
               <button>Find a Copy</button>
-              <button>Sell Your Copy</button>
+              <button onClick={() => addGameToList('forsale')}>
+                Sell Your Copy
+              </button>
             </div>
 
             <div className="text-left font-bold border-b-2">

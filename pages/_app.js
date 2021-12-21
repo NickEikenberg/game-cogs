@@ -1,5 +1,5 @@
 import React, { useState, createContext } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import cors from 'cors';
 import '../src/styles/globals.css';
 
 export const UserContext = createContext();
