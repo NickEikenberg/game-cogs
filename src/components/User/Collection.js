@@ -2,10 +2,12 @@ import React, { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import { UserContext } from '../../../pages/_app';
 import Game from '../../../pages/search/Game';
+import { RiArrowDownSFill } from 'react-icons/ri';
 
 const Collection = () => {
   const { currentUser } = useContext(UserContext);
   const [collectionData, setCollectionData] = useState([]);
+  const [hideCollection, setHideCollection] = useState(true);
 
   useEffect(() => {
     const gameIdArray = currentUser.collection.split(',');
@@ -39,21 +41,32 @@ const Collection = () => {
 
   return (
     <div>
-      <h1 className="text-3xl">My Collection</h1>
-
-      {currentUser.collection.length > 0 ? (
-        collectionData.map((game) => {
-          return (
-            <div key={game.id} className="w-1/4">
-              <Game game={game} />
-            </div>
-          );
-        })
-      ) : (
-        <h1>
-          Your collection is empty. Search for a game to add it to your
-          collection.
-        </h1>
+      <div className="flex">
+        <h1 className="text-3xl">My Collection</h1>
+        <button
+          className="text-3xl"
+          onClick={() => setHideCollection(!hideCollection)}
+        >
+          <RiArrowDownSFill />
+        </button>
+      </div>
+      {hideCollection && (
+        <div className="flex flex-wrap">
+          {currentUser.collection.length > 0 ? (
+            collectionData.map((game) => {
+              return (
+                <div key={game.id} className="w-1/4">
+                  <Game game={game} />
+                </div>
+              );
+            })
+          ) : (
+            <h1>
+              Your collection is empty. Search for a game to add it to your
+              collection.
+            </h1>
+          )}
+        </div>
       )}
     </div>
   );

@@ -41,20 +41,22 @@ const Wantlist = () => {
   return (
     <div>
       <h1 className="text-3xl">Want List</h1>
-
-      {currentUser.wantlist.length > 0 ? (
-        wantlist.map((game) => {
-          return (
-            <div key={game.id} className="w-1/4">
-              <Game game={game} />
-            </div>
-          );
-        })
-      ) : (
-        <h1>
-          Your Want List is empty. Search for a game to add it to this section.
-        </h1>
-      )}
+      <div className="flex flex-wrap">
+        {currentUser.wantlist.length > 0 ? (
+          wantlist.map((game) => {
+            return (
+              <div key={game.id} className="w-1/4">
+                <Game game={game} />
+              </div>
+            );
+          })
+        ) : (
+          <h1>
+            Your Want List is empty. Search for a game to add it to this
+            section.
+          </h1>
+        )}
+      </div>
     </div>
   );
 };
