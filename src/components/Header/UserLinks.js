@@ -8,7 +8,9 @@ const UserLinks = () => {
         <button>Login</button>
       </Link>
       <Link href="/user/register" passHref>
-        <button>Register</button>
+        <button className="bg-black text-white rounded-md px-2 py-1 border-black hover:bg-white hover:text-black transition duration-200">
+          Register
+        </button>
       </Link>
     </div>
   );
