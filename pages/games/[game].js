@@ -42,26 +42,27 @@ const Game = () => {
   //TODO TURN THESE THREE FUNCTIONS INTO ONE
 
   const addGameToList = (listName) => {
-    const axios = require('axios');
-    const FormData = require('form-data');
-    let data = new FormData();
-    data.append('email', currentUser.email);
-    data.append(listName, currentGame[0].id);
+    // const axios = require('axios');
+    // const FormData = require('form-data');
+    // let data = new FormData();
+    // data.append('email', currentUser.email);
+    // data.append(listName, currentGame[0].id);
 
-    let config = {
-      method: 'patch',
-      url: `http://localhost:8000/api/useraccount/${currentUser.id}/games`,
+    // let config = {
+    //   method: 'patch',
+    //   url: `http://localhost:8000/api/useraccount/${currentUser.id}/games`,
 
-      data: data,
-    };
+    //   data: data,
+    // };
 
-    axios(config)
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    // axios(config)
+    //   .then((response) => {
+    //     console.log(response.data);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+    return;
   };
 
   // const addToCollection = () => {

@@ -2,10 +2,12 @@ import React, { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import { UserContext } from '../../../pages/_app';
 import Game from '../../../pages/search/Game';
+import { RiArrowDownSFill } from 'react-icons/ri';
 
 const ForSale = () => {
   const { currentUser } = useContext(UserContext);
   const [forSaleData, setForSaleData] = useState([]);
+  const [hideList, setHideList] = useState(true);
 
   useEffect(() => {
     const gameIdArray = currentUser.forsale.split(',');
@@ -39,23 +41,31 @@ const ForSale = () => {
 
   return (
     <div>
-      <h1 className="text-3xl">For Sale</h1>
-      <div className="flex flex-wrap">
-        {currentUser.forsale.length > 0 ? (
-          forSaleData.map((game) => {
-            return (
-              <div key={game.id} className="w-1/4">
-                <Game game={game} />
-              </div>
-            );
-          })
-        ) : (
-          <h1>
-            You have no games listed for sale. Select a game from your
-            collection to list it.
-          </h1>
-        )}
+      <div className="flex">
+        <h1 className="text-3xl">For Sale</h1>
+        <button className="text-3xl" onClick={() => setHideList(!hideList)}>
+          <RiArrowDownSFill />
+        </button>
       </div>
+
+      {hideList && (
+        <div className="flex flex-wrap">
+          {currentUser.forsale.length > 0 ? (
+            forSaleData.map((game) => {
+              return (
+                <div key={game.id} className="w-1/4">
+                  <Game game={game} />
+                </div>
+              );
+            })
+          ) : (
+            <h1>
+              You have no games listed for sale. Select a game from your
+              collection to list it.
+            </h1>
+          )}
+        </div>
+      )}
     </div>
   );
 };
