@@ -43,7 +43,7 @@ const Register = () => {
       <Header />
 
       {isRegistered ? (
-        <div className="text-center">
+        <div className="text-center flex flex-col  py-20 space-y-5">
           <div className="text-2xl">
             Thank you for signing up, {createdEmail}!
           </div>
@@ -52,7 +52,6 @@ const Register = () => {
               Click here to log in
             </a>
           </Link>
-          <div className="h-screen-80"></div>
         </div>
       ) : (
         <div className="flex flex-col items-center py-5">
