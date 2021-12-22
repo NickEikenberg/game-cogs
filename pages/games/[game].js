@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { UserContext } from '../_app';
 import Header from '../../src/components/Header/Header';
 import GameImage from '../../src/components/Games/GameImage';
+import Screenshots from '../../src/components/Games/Screenshots';
 import Footer from '../../src/components/Footer/Footer';
 
 const Game = () => {
@@ -11,11 +12,14 @@ const Game = () => {
 
   const router = useRouter();
   const { game } = router.query;
-  let [currentGame, setCurrentGame] = useState();
+  const [currentGame, setCurrentGame] = useState();
+  const [gameArtworks, setGameArtworks] = useState();
+  const [gameScreenshots, setGameScreenshots] = useState();
+  const [platforms, setPlatforms] = useState();
 
   useEffect(() => {
     const getGame = () => {
-      let data = `fields name, cover.image_id, summary,rating,storyline,screenshots, artworks;\nwhere id = ${game};\n`;
+      let data = `fields name, cover.image_id, summary,rating,storyline,screenshots.url, platforms.name, artworks.url;\nwhere id = ${game};\n`;
 
       let config = {
         method: 'post',
@@ -31,6 +35,12 @@ const Game = () => {
       axios(config)
         .then((response) => {
           setCurrentGame(response.data);
+          console.log(response.data);
+          const { artworks, screenshots, platforms } = response.data[0];
+
+          setGameArtworks(artworks);
+          setGameScreenshots(screenshots);
+          setPlatforms(platforms);
         })
         .catch((error) => {
           console.log(error);
@@ -155,6 +165,7 @@ const Game = () => {
 
             <div className="text-left font-bold border-b-2">
               <h1 className="flex justify-between items-center">Screenshots</h1>
+              <Screenshots screenshots={gameScreenshots || []} />
             </div>
 
             <div className="text-left font-bold border-b-2">
