@@ -21,7 +21,7 @@ const Game = () => {
 
   useEffect(() => {
     const getGame = () => {
-      let data = `fields name, cover.image_id, summary,rating,storyline,screenshots.url, platforms.name, artworks.url;\nwhere id = ${game};\n`;
+      let data = `fields name, cover.image_id, summary,rating,storyline,screenshots.url, platforms.name, release_dates.human, storyline, artworks.url;\nwhere id = ${game};\n`;
 
       let config = {
         method: 'post',
@@ -123,6 +123,10 @@ const Game = () => {
               <div className="w-2/3 text-xs m-2">
                 <p>{currentGame[0].summary}</p>
               </div>
+            </div>
+            <div className="my-4">
+              <h1>RELEASE DATE</h1>
+              <p className="text-sm">{currentGame[0].release_dates[0].human}</p>
             </div>
             {platforms && <Platforms platforms={platforms} />}
           </div>
