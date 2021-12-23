@@ -25,9 +25,9 @@ const Search = () => {
         data: data,
       };
 
-      axios(config)
+      await axios(config)
         .then((response) => {
-          setSearchData(await response.data);
+          setSearchData(response.data);
         })
         .catch((error) => {
           console.log(error);
