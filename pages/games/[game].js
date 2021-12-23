@@ -111,7 +111,7 @@ const Game = () => {
   // };
 
   return (
-    <div className="h-screen bg-gray-50 flex flex-col">
+    <div className="bg-gray-50 flex flex-col">
       <Header />
       {currentGame ? (
         <div className="flex">
