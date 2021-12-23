@@ -11,7 +11,7 @@ const Search = () => {
   let [searchData, setSearchData] = useState([]);
 
   useEffect(() => {
-    const getGame = async () => {
+    const getGame = () => {
       let data = `search "${search}";\nfields name, cover.image_id;`;
 
       let config = {
@@ -25,8 +25,9 @@ const Search = () => {
         data: data,
       };
 
-      await axios(config)
+      axios(config)
         .then((response) => {
+          console.log(response.data);
           setSearchData(response.data);
         })
         .catch((error) => {
@@ -36,6 +37,10 @@ const Search = () => {
 
     getGame();
   }, [search]);
+
+  useEffect(() => {
+    console.log(searchData);
+  }, [searchData]);
 
   return (
     <div>
