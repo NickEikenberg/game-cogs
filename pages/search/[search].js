@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Header from '../../src/components/Header/Header';
 import EmptySearch from './EmptySearch';
-import Game from './Game';
+import Game from '../../src/components/Games/Game';
 import axios from 'axios';
 
 const Search = () => {
