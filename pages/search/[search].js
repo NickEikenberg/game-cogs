@@ -45,7 +45,7 @@ const Search = () => {
         {searchData.map((game) => {
           return (
             <div key={game.id} className="w-1/4">
-              <Game game={game} />
+              <Game game={game || null} />
             </div>
           );
         })}
