@@ -42,13 +42,14 @@ const Search = () => {
       <Header />
       <h1>Results for {search} </h1>
       <div id="results" className="flex flex-wrap">
-        {searchData.map((game) => {
-          return (
-            <div key={game.id} className="w-1/4">
-              <Game game={game || null} />
-            </div>
-          );
-        })}
+        {searchData.length > 0 &&
+          searchData.map((game) => {
+            return (
+              <div key={game.id} className="w-1/4">
+                <Game game={game} />
+              </div>
+            );
+          })}
       </div>
 
       <div>{searchData.length > 0 ? null : <EmptySearch />}</div>
