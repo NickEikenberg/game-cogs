@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 
-const Carousel = require('react-responsive-carousel').Carousel;
-
 const thumbTo1080 = (url) => url.replace('thumb', '1080p');
 
 const Screenshots = ({ screenshots }) => {

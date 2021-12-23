@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import { UserContext } from '../../../pages/_app';
-import Game from '../../../pages/search/Game';
+import Game from '../Games/Game';
 import { RiArrowDownSFill } from 'react-icons/ri';
 
 const Collection = () => {
