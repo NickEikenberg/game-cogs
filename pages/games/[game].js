@@ -165,7 +165,9 @@ const Game = () => {
 
             <div className="text-left font-bold border-b-2">
               <h1 className="flex justify-between items-center">Screenshots</h1>
-              <Screenshots screenshots={gameScreenshots || []} />
+              {gameScreenshots && (
+                <Screenshots screenshots={gameScreenshots || []} />
+              )}
             </div>
 
             <div className="text-left font-bold border-b-2">
