@@ -1,27 +1,25 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 
-const Carousel = require('react-responsive-carousel').Carousel;
-
 const thumbTo1080 = (url) => url.replace('thumb', '1080p');
 
-const Screenshots = ({ screenshots }) => {
-  const [currentScreenshot, setCurrentScreenshot] = useState(0);
+const Artwork = ({ artworks }) => {
+  const [currentArtwork, setCurrentArtwork] = useState(0);
 
-  const images = screenshots.map((img) => 'https:' + thumbTo1080(img.url));
+  const images = artworks.map((img) => 'https:' + thumbTo1080(img.url));
 
   const changeImage = (direction) => {
     if (direction === 'next') {
-      if (currentScreenshot === images.length - 1) {
-        setCurrentScreenshot(0);
+      if (currentArtwork === images.length - 1) {
+        setCurrentArtwork(0);
       } else {
-        setCurrentScreenshot(currentScreenshot + 1);
+        setCurrentArtwork(currentArtwork + 1);
       }
     } else {
-      if (currentScreenshot === 0) {
-        setCurrentScreenshot(images.length - 1);
+      if (currentArtwork === 0) {
+        setCurrentArtwork(images.length - 1);
       } else {
-        setCurrentScreenshot(currentScreenshot - 1);
+        setCurrentArtwork(currentArtwork - 1);
       }
     }
   };
@@ -30,8 +28,8 @@ const Screenshots = ({ screenshots }) => {
     <div className="mx-2">
       <div>
         <Image
-          src={images[currentScreenshot]}
-          alt="game screenshot"
+          src={images[currentArtwork]}
+          alt="game art"
           width={600}
           height={500}
         ></Image>
@@ -44,4 +42,4 @@ const Screenshots = ({ screenshots }) => {
   );
 };
 
-export default Screenshots;
+export default Artwork;

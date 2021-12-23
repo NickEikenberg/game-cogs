@@ -5,6 +5,8 @@ import { UserContext } from '../_app';
 import Header from '../../src/components/Header/Header';
 import GameImage from '../../src/components/Games/GameImage';
 import Screenshots from '../../src/components/Games/Screenshots';
+import Artwork from '../../src/components/Games/Artwork';
+import Platforms from '../../src/components/Games/Platforms';
 import Footer from '../../src/components/Footer/Footer';
 
 const Game = () => {
@@ -113,14 +115,16 @@ const Game = () => {
       <Header />
       {currentGame ? (
         <div className="flex">
-          <div className="m-2 flex w-2/3" id="game-main">
-            {/* {JSON.stringify(currentGame[0])} */}
-            <div className="m-2">
-              <GameImage game={currentGame[0]} />
+          <div className="m-2 flex flex-col w-2/3" id="game-main">
+            <div className="flex">
+              <div className="m-2">
+                <GameImage game={currentGame[0]} />
+              </div>
+              <div className="w-2/3 text-xs m-2">
+                <p>{currentGame[0].summary}</p>
+              </div>
             </div>
-            <div className="w-2/3 text-xs m-2">
-              <p>{currentGame[0].summary}</p>
-            </div>
+            {platforms && <Platforms platforms={platforms} />}
           </div>
 
           <div className="w-1/3 m-2" id="game-stats">
@@ -172,6 +176,7 @@ const Game = () => {
 
             <div className="text-left font-bold border-b-2">
               <h1 className="flex justify-between items-center">Artwork</h1>
+              {gameArtworks && <Artwork artworks={gameArtworks || []} />}
             </div>
           </div>
         </div>
