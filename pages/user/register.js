@@ -12,7 +12,7 @@ const Register = () => {
 
   const handleUserRegister = (newUser) => {
     axios
-      .post('http://localhost:8000/api/useraccount', newUser)
+      .post('http://gamecogs-api.herokuapp.com/api/useraccount', newUser)
       .then((res) => {
         console.log(res);
         setIsRegistered(true);

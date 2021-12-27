@@ -24,7 +24,7 @@ const Login = () => {
   const handleLogin = (user) => {
     console.log(user);
     axios
-      .put('http://localhost:8000/api/useraccount/login', user)
+      .put('http://gamecogs-api.herokuapp.com/api/useraccount/login', user)
       .then((res) => {
         console.log(res.data);
         if (res.data.email) {
